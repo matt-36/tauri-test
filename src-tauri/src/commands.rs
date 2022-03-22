@@ -1,18 +1,27 @@
 use std::{
     fs::{File, OpenOptions},
     io::{Read, Write},
-    thread,
+    thread, time::Duration,
 };
 
 use reqwest::{Client, ClientBuilder, Proxy};
 use serde_json::{json, Value};
-use tauri::State;
+use tauri::{State, async_runtime::Mutex};
+
+struct TrueState(Mutex<RaidState>);
 
 pub struct RaidState {
     message: String,
     accountstate: AccountState,
-    msg_delay: i32,
-    channel_id: u64
+    msg_delay: u64,
+    channel_id: u64,
+    active: bool
+}
+
+impl RaidState {
+    pub fn update_message(&mut self, message: String) {
+        self.message = message
+    }
 }
 pub struct AccountState {
     accounts: Vec<Account>,
@@ -132,15 +141,15 @@ pub fn join_server(code: String, state: State<RaidState>) -> Result<String, Stri
     Ok("Joined server {code}".to_string())
 }
 
-pub fn update_message(message: String, state: State<RaidState>) {
-    state.message = message;
+pub fn update_message(message: String, state: State<&mut RaidState>) {
+    state.0.message = message;
 }
 
-pub fn spam(state: State<RaidState>) {
-    tauri::async_runtime::spawn(move || 'spamming: loop {
-        for account in state.accountstate.accounts {
+pub async fn spam(state: State<'_, RaidState>) {
+    while state.active {
+        for account in &state.accountstate.accounts {
             account.send(state.message.clone(), state.channel_id);
-            thread::sleep(state.msg_delay)
+            thread::sleep(Duration::from_millis(state.msg_delay));
         }
-    });
+    }
 }

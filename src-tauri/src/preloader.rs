@@ -26,6 +26,7 @@ pub fn main() {
         Ok(())
       })
       .invoke_handler(tauri::generate_handler![close_splashscreen, get_proxies, set_proxies, get_tokens, set_tokens, join_server])
+      .manage(TrueState::new())
       .run(tauri::generate_context!(
         "tauri.conf.json"
       ))
