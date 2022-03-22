@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <link rel="stylesheet" href="/global.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>token editor</title>
+  </head>
+  <body>
+    <div class="navbar-minipage" data-tauri-drag-region>
+      <div class="savebtn" onclick="saveData()">SAVE</div>
+      <div class="navbar-close" onclick="closeWindow()"></div>
+    </div>
+    <textarea
+      class="mini-inputbox"
+      placeholder="Enter tokens here"
+      name="tokens"
+      id="tokens"
+      cols="30"
+      rows="10"
+    ></textarea>
+  </body>
+  <script>
+    let win = window.__TAURI__.window.getCurrent();
+
+    function closeWindow() {
+      win.hide();
+    }
+    function saveData() {
+      let text = document.getElementById("tokens").value;
+      window.__TAURI__.invoke("set_tokens", { tokens: text });
+    }
+
+    function getData() {
+      let text = window.__TAURI__.invoke("get_tokens").then((res) => {
+        let textarea = document.getElementById("tokens");
+        textarea.value = res;
+      });
+    }
+
+    getData();
+  </script>
+</html>

@@ -1,0 +1,90 @@
+{
+	"build": {
+		"distDir": "../public",
+		"devPath": "http://localhost:5000",
+		"beforeDevCommand": "",
+		"beforeBuildCommand": "",
+		"withGlobalTauri": true
+	},
+
+	"tauri": {
+		"bundle": {
+			"active": true,
+			"targets": "all",
+			"identifier": "com.tauri.dev",
+			"icon": [
+				"icons/32x32.png",
+				"icons/128x128.png",
+				"icons/128x128@2x.png",
+				"icons/icon.icns",
+				"icons/icon.ico"
+			],
+			"copyright": "",
+			"category": "Game",
+			"shortDescription": "",
+			"longDescription": "",
+			"deb": {
+				"depends": [],
+				"useBootstrapper": false
+			},
+			"macOS": {
+				"frameworks": [],
+				"minimumSystemVersion": "",
+				"useBootstrapper": false,
+				"exceptionDomain": "",
+				"signingIdentity": null,
+				"entitlements": null
+			},
+			"windows": {
+				"certificateThumbprint": null,
+				"digestAlgorithm": "sha256",
+				"timestampUrl": ""
+			}
+		},
+		"allowlist": {
+			"all": true
+		},
+		"windows": [
+			{
+				"title": "Control Panel",
+                "label": "main",
+				"width": 839,
+				"height": 790,
+				"resizable": false,
+				"decorations": false,
+				"visible": false
+			},
+            {
+				"title": "PreLoader",
+                "label": "preloader",
+                "width": 400,
+                "height": 200,
+                "decorations": false,
+                "resizable": false,
+                "url": "splashscreen.html"
+            },
+            {
+				"title": "Editor",
+                "label": "tokens",
+                "width": 400,
+                "height": 200,
+                "decorations": false,
+                "resizable": false,
+				"visible": false,
+                "url": "tokens.html"
+            },
+            {
+                "label": "proxies",
+                "width": 400,
+                "height": 200,
+                "decorations": false,
+                "resizable": false,
+				"visible": false,
+                "url": "proxies.html"
+            }
+		],
+		"security": {
+			"csp": "default-src blob: data: filesystem: ws: http: https: 'unsafe-eval' 'unsafe-inline'"
+		}
+	}
+}

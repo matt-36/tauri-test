@@ -1,0 +1,19 @@
+{
+    "tokens": [
+
+    ],
+    "proxies": [
+
+    ],
+    "settings": {
+        "join": {
+            "min_delay": 1,
+            "max_delay": 5
+        },
+        "chat": {
+            "min_delay": 1,
+            "max_delay": 5
+        },
+        "liscence": "xxxx-xxxx-xxxx-xxxx"
+    }
+}
