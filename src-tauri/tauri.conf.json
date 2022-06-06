@@ -62,25 +62,6 @@
                 "decorations": false,
                 "resizable": false,
                 "url": "splashscreen.html"
-            },
-            {
-				"title": "Editor",
-                "label": "tokens",
-                "width": 400,
-                "height": 200,
-                "decorations": false,
-                "resizable": false,
-				"visible": false,
-                "url": "tokens.html"
-            },
-            {
-                "label": "proxies",
-                "width": 400,
-                "height": 200,
-                "decorations": false,
-                "resizable": false,
-				"visible": false,
-                "url": "proxies.html"
             }
 		],
 		"security": {
