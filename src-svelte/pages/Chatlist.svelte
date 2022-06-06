@@ -2,8 +2,8 @@
   import * as core from '../functions.js'
   import Swtich from "../components/Switch.svelte";
 
-  let serverlink;
-  let message;
+  let argument1;
+  let argument2;
 
   let stopstart = false;
 
@@ -11,14 +11,14 @@
 
 <div class="content">
   <div class="tlgrid">
-    <div class="btn grad" on:click={core.openProxyWindow}>PROXIES</div>
-    <div class="btn grad" on:click={core.openTokenWindow}>TOKENS</div>
+    <div class="btn grad" on:click={core.openProxyWindow}>editor1</div>
+    <div class="btn grad" on:click={core.openTokenWindow}>editor2</div>
     <div class="inlineserver">
-      <div class="btn grad" on:click={core.joinServer()}>JOIN SERVER</div>
+      <div class="btn grad" on:click={core.tauriPrint()}>tauri call</div>
       <div class="serverlink">
-        <textarea bind:value={serverlink}
-          placeholder="Server link"
-          name="serverlink"
+        <textarea bind:value={argument1}
+          placeholder="Args"
+          name="argument"
           id="sl"
           cols="30"
           rows="10"
@@ -34,8 +34,8 @@
   <div class="chatlog"><div class="head">Chatlog</div></div>
   <div class="message">
     <textarea
-    bind:value={message}
-      placeholder="Enter text message"
+    bind:value={argument2}
+      placeholder="Enter message"
       name="message"
       id="m"
       cols="30"
