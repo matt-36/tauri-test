@@ -1,5 +1,4 @@
-# raid-tool
-a discord raid tool built for testing security that was never finished... (lost new src) feel free to use code.
+# tauri + svelte test
 
 frontend: svelte + rollup
 
